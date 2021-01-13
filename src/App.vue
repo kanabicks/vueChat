@@ -21,10 +21,10 @@ export default {
     ChatWindow
   },
   data(){
-    messages:[
-      {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'},
-      {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'}
-    ]
+   // messages:[
+   //   {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'},
+   //   {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'}
+   // ]
 
   },
   methods:{
