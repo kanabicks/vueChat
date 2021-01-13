@@ -1,28 +1,53 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ChatWindow>
+      <chat-message v-for="(message,i ) in messages" v-bind:key="i" username="Ivan" time="21.31.3434 21:21">
+    <Container><chat-message v-bind:username="kanabicks" datetime="11.111.2212">Hello!</chat-message></Container>
+      </chat-message>
+    </ChatWindow>
   </div>
 </template>
 
 <script>
+import ChatMessage from './components/ChatMessage.vue'
 import Container from './components/Container.vue'
+import ChatWindow from './components/ChatWindow'
 
 export default {
   name: 'App',
   components: {
-    Container
+    Container,
+    ChatMessage,
+    ChatWindow
+  },
+  data(){
+   // messages:[
+   //   {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'},
+   //   {username: 'Ivan', datetime: '21.312.312' , text: 'dsdsdsd'}
+   // ]
+
+  },
+  methods:{
+    getMessages(){
+      this.axios.get('http://37.77.104.246/api/chat/getmessages.php')
+      .then((response)=>{
+        this.messages=response.data;
+      })
+    }
+  },
+  mounted(){
+     this.getMessages();
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body {
+  margin: 0;
+  background-color: #f9f9fa;
+}
+
 }
 </style>
