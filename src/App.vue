@@ -43,12 +43,9 @@ export default {
         .then((response) => {
           this.messages = response.data;
         });
+        
     },
-    sendMessages(){
-      this.axios
-        .post("http://37.77.104.246/api/chat/sendmessage.php")
-
-    }
+    
   },
   mounted() {
     this.getMessages();

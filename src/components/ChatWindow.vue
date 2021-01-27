@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+  <script>
 export default {
   name: 'ChatWindow',
   data() {
@@ -32,8 +32,15 @@ export default {
       author: '',
       text: ''
     }
-  }
-}
+  },
+methods:{
+    sendMessage(){
+      this.axios
+        .post("http://37.77.104.246/api/chat/sendmessage.php")
+        .then((response) => {
+          this.author = response.data,
+          this.text = response.data;
+        });
 </script>
 
 <style>
