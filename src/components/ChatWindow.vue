@@ -40,7 +40,12 @@ methods:{
         .then((response) => {
           this.author = response.data,
           this.text = response.data;
-        });
+        }),
+  mounted(){
+    this.sendMessage()
+  },
+};
+  
 </script>
 
 <style>
