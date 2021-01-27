@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <ChatWindow>
-      <chat-message
-        v-for="(message, i) in messages"
-        v-bind:key="i"
-        username="Ivan"
-        time="21.31.3434 21:21"
-      >
-        <Container
-          ><chat-message username="kanabicks" datetime="11.111.2212"
-            >Hello!</chat-message
-          ></Container
+    <Container>
+      <ChatWindow>
+        <ChatMessage 
+          v-for="(message, i) in messages" 
+          v-bind:key="i"
+          
+          v-bind:username="message.author" 
+          v-bind:datetime="message.datetime" 
         >
-      </chat-message>
-    </ChatWindow>
+          {{message.text}}
+        </ChatMessage>
+      </ChatWindow>
+    </Container>
   </div>
 </template>
 
@@ -45,6 +44,11 @@ export default {
           this.messages = response.data;
         });
     },
+    sendMessages(){
+      this.axios
+        .post("http://37.77.104.246/api/chat/sendmessage.php")
+
+    }
   },
   mounted() {
     this.getMessages();

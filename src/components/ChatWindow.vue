@@ -2,23 +2,37 @@
     <div class="chat-window">
     <div class="chat-messages">
       <div class="scroll-wrapper">
-        <!-- ТУТ ДОЛЖНЫ ВЫВОДИТЬСЯ СООБЩЕНИЯ -->
         <slot></slot>
       </div>
     </div>
     <div class="chat-send-panel">
-      <input type="text" placeholder="Ваш никнейм..." class="chat-send-name-field" />
-      <input type="text" placeholder="Сообщение..." class="chat-send-message-field"/>
-      <button>
+      <input type="text" 
+      placeholder="Ваш никнейм..." 
+      class="chat-send-name-field" />
+      
+      <input type="text" 
+      placeholder="Сообщение..." 
+      class="chat-send-message-field"/>
+      <button @click="$emit('sendMessage',{
+        'author':author,
+        'text':text
+      })"> 
         <img src="/img/send.png" />
       </button>
+      
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    
+  name: 'ChatWindow',
+  data() {
+    return {
+      author: '',
+      text: ''
+    }
+  }
 }
 </script>
 
