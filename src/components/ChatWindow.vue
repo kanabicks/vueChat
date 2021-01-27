@@ -2,24 +2,50 @@
     <div class="chat-window">
     <div class="chat-messages">
       <div class="scroll-wrapper">
-        <!-- ТУТ ДОЛЖНЫ ВЫВОДИТЬСЯ СООБЩЕНИЯ -->
         <slot></slot>
       </div>
     </div>
     <div class="chat-send-panel">
-      <input type="text" placeholder="Ваш никнейм..." class="chat-send-name-field" />
-      <input type="text" placeholder="Сообщение..." class="chat-send-message-field"/>
-      <button>
+      <input type="text" 
+      placeholder="Ваш никнейм..." 
+      class="chat-send-name-field" />
+      
+      <input type="text" 
+      placeholder="Сообщение..." 
+      class="chat-send-message-field"/>
+      <button @click="$emit('sendMessage',{
+        'author':author,
+        'text':text
+      })"> 
         <img src="/img/send.png" />
       </button>
+      
     </div>
   </div>
 </template>
 
-<script>
+  <script>
 export default {
-    
-}
+  name: 'ChatWindow',
+  data() {
+    return {
+      author: '',
+      text: ''
+    }
+  },
+methods:{
+    sendMessage(){
+      this.axios
+        .post("http://37.77.104.246/api/chat/sendmessage.php")
+        .then((response) => {
+          this.author = response.data,
+          this.text = response.data;
+        }),
+  mounted(){
+    this.sendMessage()
+  },
+};
+  
 </script>
 
 <style>
